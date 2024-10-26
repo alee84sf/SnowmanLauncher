@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //TODO: Add a "movementEnabled" bool so I can disable movement while the control panel is open
+
         //FixedUpdate for moving since Update is frame-dependent
         Move();
     }
