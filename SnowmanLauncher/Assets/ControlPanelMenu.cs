@@ -6,10 +6,13 @@ public class ControlPanelMenu : MonoBehaviour
 {
     public bool controlPanelOpen = false;
     public GameObject controlPanelUI;
+    public GameObject player;
+    private PlayerMovement playerScript;
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<PlayerMovement>();
     }
 
     /*
@@ -35,9 +38,11 @@ public class ControlPanelMenu : MonoBehaviour
             if(controlPanelOpen)
             {
                 ClosePanel();
+                playerScript.movementEnabled = true;
             } else
             {
                 OpenPanel();
+                playerScript.movementEnabled = false;
             }
 
         } 

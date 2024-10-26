@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private float yMovement;
     private Vector2 moveDirection;
 
+    public bool movementEnabled = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,14 @@ public class PlayerMovement : MonoBehaviour
         xMovement = Input.GetAxisRaw("Horizontal");
         yMovement = Input.GetAxisRaw("Vertical");
 
-        moveDirection = new Vector2(xMovement, yMovement).normalized;
+        //Player won't move while the control panel is open
+        if (movementEnabled)
+        {
+            moveDirection = new Vector2(xMovement, yMovement).normalized;
+        } else
+        {
+            moveDirection = new Vector2(0,0);
+        }
     }
 
     private void FixedUpdate()
@@ -41,5 +50,6 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+
     }
 }
