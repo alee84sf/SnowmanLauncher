@@ -1323,8 +1323,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 75280328742f4e14daf1658d71c1c7b4, type: 3}
   letterDisplay: {fileID: 2127784006}
   numberDisplay: {fileID: 1974864943}
-  xSlider: {fileID: 0}
-  ySlider: {fileID: 0}
+  xSlider: {fileID: 1742656624}
+  ySlider: {fileID: 812272471}
 --- !u!224 &775619189 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5168124661506685647, guid: 35f8601b8bd767a44bc5b21f1663390e, type: 3}
