@@ -98,7 +98,7 @@ public class ControlPanelMenu : MonoBehaviour
         if(fireEnabled)
         {
             //actually fire the snowball
-            Debug.Log("SNOWBALL FIRED! " + "X: " + xSlider.value + ", Y: " + ySlider.value);
+            Debug.Log("SNOWBALL FIRED! " + "X: " + xCoords + "+" + xSlider.value + ", Y: " + yCoords + "+" + ySlider.value);
             fireCooldown = StartCoroutine(FireCooldown());
         } else
         {
