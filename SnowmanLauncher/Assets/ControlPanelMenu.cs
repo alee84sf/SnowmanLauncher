@@ -8,6 +8,13 @@ public class ControlPanelMenu : MonoBehaviour
     public GameObject controlPanelUI;
     public GameObject player;
     private PlayerMovement playerScript;
+
+    //Snowball positioning
+    public int xCoords; //A-F will send 1-6 as well
+    public int yCoords; //Reminder: SUBTRACT 1 FROM BOTH X AND Y
+
+    public bool fireEnabled; //is the fire button on/off?
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +30,10 @@ public class ControlPanelMenu : MonoBehaviour
      * when cooldown is done:
      * fireable=true
      * 
-     * pressing fire button checks fireable in ControlPanelMenu, ControlPanel never gets disabled so it will always know
+     * pressing fire button checks fireable in ControlPanelMenu, ControlPanel never gets disabled so it will always know (get by tag ControlPanel)
      * 
      * will worry about a READY TO FIRE button later
+     * (if active, update state, also update state on open)
      *      
      * Open/closing the menu referred to this video: https://www.youtube.com/watch?v=JivuXdrIHK0
      */
@@ -57,5 +65,19 @@ public class ControlPanelMenu : MonoBehaviour
     {
         controlPanelUI.SetActive(false);
         controlPanelOpen = false;
+    }
+
+    public void SetCoords(int n, bool isLetter)
+    {
+        //TODO: Don't forget to -1 when doing the actual calculations
+        if(isLetter)
+        {
+            xCoords = n;
+            //UPDATE LETTER SPRITE
+        } else
+        {
+            yCoords = n;
+            //UPDATE NUMBER SPRITE
+        }
     }
 }
