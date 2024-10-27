@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ControlPanelMenu : MonoBehaviour
 {
@@ -16,8 +17,11 @@ public class ControlPanelMenu : MonoBehaviour
     [SerializeField] Sprite[] numberDisplaySprites;
     [SerializeField] GameObject letterDisplay;
     [SerializeField] GameObject numberDisplay;  //<-- ^^ set as their respective sprites/objects in the Unity editor
+    [SerializeField] Slider xSlider;
+    [SerializeField] Slider ySlider;
 
-    public bool fireEnabled; //is the fire button on/off?
+    private bool fireEnabled = true; //is the fire button on/off?
+    Coroutine fireCooldown;
 
     // Start is called before the first frame update
     void Start()
@@ -87,5 +91,27 @@ public class ControlPanelMenu : MonoBehaviour
             numberDisplay.GetComponent<UnityEngine.UI.Image>().sprite = numberDisplaySprites[n - 1];
         }
         //update display based on what was set above
+    }
+
+    public void FireSnowball()
+    {
+        if(fireEnabled)
+        {
+            //actually fire the snowball
+            Debug.Log("SNOWBALL FIRED");
+            fireCooldown = StartCoroutine(FireCooldown());
+        } else
+        {
+            Debug.Log("Fire button cooldown");
+        }
+    }
+
+    private IEnumerator FireCooldown()
+    {
+        Debug.Log("cooling down...");
+        fireEnabled = false;
+        yield return new WaitForSeconds(4);
+        fireEnabled = true;
+        Debug.Log("ready to go!");
     }
 }
