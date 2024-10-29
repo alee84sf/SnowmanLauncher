@@ -11,6 +11,7 @@ TagManager:
   - NumberDisplay
   - LowerLeft
   - UpperRight
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -23,6 +23,9 @@ public class CollectibleCollisions : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("I just got picked up by Player");
+
+            //win logic here
+            GameObject.FindWithTag("GameController").GetComponent<GameControllerScript>().CheckWinConditions();
         }
         else
         {

@@ -33,6 +33,44 @@ public class GameControllerScript : MonoBehaviour
         //if GetObjectByTag("Enemy") and GetObjectByTag("Collectible") = null:
         //delete all bullets
         //you win
+        Debug.Log("checking win conditions...");
+        GameObject[] friends = GameObject.FindGameObjectsWithTag("Collectible");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        //debugging: prints full list
+        /*
+        string result = "";
+        foreach(GameObject g in friends)
+        {
+            result += g.name + "|";
+        }
+        Debug.Log("friends: " + result);
+        result = "";
+        foreach (GameObject g in enemies)
+        {
+            result += g.name + "|";
+        }
+        Debug.Log("enemies: " + result);
+        */
+
+        //debugging contents
+        //Final version: if(friends.Length == 0 && enemies.Length == 0)
+        if (friends.Length == 0)
+        {
+            Debug.Log("No friends left");
+        } else
+        {
+            Debug.Log("friends left");
+        }
+        if (enemies.Length == 0)
+        {
+            Debug.Log("No enemiess left");
+        }
+        else
+        {
+            Debug.Log("enemies left");
+        }
+
     }
 
     //vvv Triggers when the player or friendly is hit
