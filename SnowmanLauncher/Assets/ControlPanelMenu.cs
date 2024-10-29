@@ -141,7 +141,7 @@ public class ControlPanelMenu : MonoBehaviour
 
     private IEnumerator FireCooldown()
     {
-        Debug.Log("cooling down...");
+        //Debug.Log("cooling down...");
         fireEnabled = false;
         yield return new WaitForSeconds(4);
         fireEnabled = true;
