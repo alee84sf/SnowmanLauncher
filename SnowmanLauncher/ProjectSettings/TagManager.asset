@@ -12,6 +12,8 @@ TagManager:
   - LowerLeft
   - UpperRight
   - Enemy
+  - PickedUpAlready
+  - SprinklerChild
   layers:
   - Default
   - TransparentFX
