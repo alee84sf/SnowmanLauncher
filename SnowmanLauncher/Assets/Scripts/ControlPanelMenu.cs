@@ -130,13 +130,19 @@ public class ControlPanelMenu : MonoBehaviour
 
             //vvv This may need to be a separate function or coroutine to facilitate spawning the snowball late
             //      made fireSnowball Coroutine for this purpose
-            Instantiate(snowball, launchCoords, Quaternion.identity);
+            fireSnowball = StartCoroutine(SnowballCountdown(launchCoords));
 
             fireCooldown = StartCoroutine(FireCooldown());
         } else
         {
             Debug.Log("Fire button cooldown");
         }
+    }
+
+    private IEnumerator SnowballCountdown(Vector3 launchCoords)
+    {
+        yield return new WaitForSeconds(3);
+        Instantiate(snowball, launchCoords, Quaternion.identity);
     }
 
     private IEnumerator FireCooldown()
