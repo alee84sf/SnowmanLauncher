@@ -55,6 +55,8 @@ public class GameControllerScript : MonoBehaviour
 
         //debugging contents
         //Final version: if(friends.Length == 0 && enemies.Length == 0)
+        //PROBLEM: friends/enemies include themselves in the check
+        //Might need to make this an IENumerator?
         if (friends.Length == 0)
         {
             Debug.Log("No friends left");
@@ -64,7 +66,7 @@ public class GameControllerScript : MonoBehaviour
         }
         if (enemies.Length == 0)
         {
-            Debug.Log("No enemiess left");
+            Debug.Log("No enemies left");
         }
         else
         {
