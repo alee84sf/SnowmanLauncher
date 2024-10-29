@@ -9,6 +9,8 @@ TagManager:
   - CoordinateButton
   - LetterDisplay
   - NumberDisplay
+  - LowerLeft
+  - UpperRight
   layers:
   - Default
   - TransparentFX

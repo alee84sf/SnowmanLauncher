@@ -19,13 +19,37 @@ public class ControlPanelMenu : MonoBehaviour
     [SerializeField] GameObject numberDisplay;  //<-- ^^ set as their respective sprites/objects in the Unity editor
     [SerializeField] Slider xSlider;
     [SerializeField] Slider ySlider;
+    private float measurementUnit;
+    private Vector3 lowerLeftCoords;
 
+    [SerializeField] GameObject snowball;
     private bool fireEnabled = true; //is the fire button on/off?
+    Coroutine fireSnowball;
     Coroutine fireCooldown;
 
     // Start is called before the first frame update
     void Start()
     {
+        //LLEFT'S COORDS ARE DIFFERENT IN EDITOR BC ITS LOCAL TO THE PARENT OBJECT IDFK WHY THEY DID IT LIKE THAT
+        //but it works
+
+        //!!! MAKE SURE EVERY MAP HAS A LOWERLEFT AND UPPERRIGHT POSITIONED PROPERLY !!!
+        //and no non-square maps
+
+        lowerLeftCoords = GameObject.FindWithTag("LowerLeft").transform.position;
+        //Debug.Log(lowerLeftCoords.x + " " + lowerLeftCoords.y);
+        measurementUnit = (((GameObject.FindWithTag("UpperRight").transform.position).x) - (lowerLeftCoords.x)) / 5;
+        //Debug.Log(measurementUnit);
+
+        //Initialize at A1 before u press anything
+        xCoords = 1;
+        yCoords = 1;
+
+        //lowerLeftCoords += new Vector3(measurementUnit, 0, 0);
+        //Instantiate(snowball, lowerLeftCoords, Quaternion.identity);
+        
+        
+
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerMovement>();
     }
@@ -99,6 +123,15 @@ public class ControlPanelMenu : MonoBehaviour
         {
             //actually fire the snowball
             Debug.Log("SNOWBALL FIRED! " + "X: " + xCoords + "+" + xSlider.value + ", Y: " + yCoords + "+" + ySlider.value);
+
+            float x = lowerLeftCoords.x + (measurementUnit * (xCoords - 1 + xSlider.value));
+            float y = lowerLeftCoords.y + (measurementUnit * (yCoords - 1 + ySlider.value));
+            Vector3 launchCoords = new Vector3(x,y,0);
+
+            //vvv This may need to be a separate function or coroutine to facilitate spawning the snowball late
+            //      made fireSnowball Coroutine for this purpose
+            Instantiate(snowball, launchCoords, Quaternion.identity);
+
             fireCooldown = StartCoroutine(FireCooldown());
         } else
         {
