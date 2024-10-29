@@ -7,6 +7,8 @@ public class SprinklerScript : MonoBehaviour
     private bool visible;
     private Transform child;
     [SerializeField] GameObject sprinklerBullet;
+    [SerializeField] float moveSpeed;
+    public enum Direction {up, down, left, right};
 
     // Start is called before the first frame update
     void Start()
@@ -29,14 +31,40 @@ public class SprinklerScript : MonoBehaviour
             //rotate, fire, wait
             if(visible)
             {
-                child.Rotate(0, 0, 30f, Space.Self);
+                child.Rotate(0, 0, 70f, Space.Self);
                 //Vector3 v = child.position;
 
-                Instantiate(sprinklerBullet,child);
+                SpawnBullet(Direction.up);
             }
             yield return new WaitForSeconds(0.2f);
         }
     }
+
+    public void SpawnBullet(Direction dir)
+    {
+        GameObject bullet = Instantiate(sprinklerBullet, child.position, child.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        Vector2 v = new Vector2();
+        if(dir == Direction.up)
+        {
+            v = child.transform.up;
+        } 
+        else if (dir == Direction.down)
+        {
+            v = -child.transform.up;
+        }
+        else if (dir == Direction.left)
+        {
+            v = -child.transform.right;
+        }
+        else if (dir == Direction.right)
+        {
+            v = child.transform.right;
+        }
+
+        rb.velocity = v * moveSpeed;
+    }
+
 
     /*
      *  If the sprinklers bug out when exporting to OpenGL,
