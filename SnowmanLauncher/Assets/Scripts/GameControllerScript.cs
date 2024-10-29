@@ -12,6 +12,8 @@ public class GameControllerScript : MonoBehaviour
     [SerializeField] GameObject loseCanvas;
     [SerializeField] GameObject winCanvas;
 
+    bool lost = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,12 +38,17 @@ public class GameControllerScript : MonoBehaviour
     //vvv Triggers when the player or friendly is hit
     public void LoseGame(string reason)
     {
-        //(might need to do if(!won) in case u launch a snowball that hits AFTER winning but idk if it matters)
+        if(!lost)
+        {
+            //(might need to do if(!won) in case u launch a snowball that hits AFTER winning but idk if it matters)
 
-        //disable mortar canvas via FindWithTag("ControlPanel"); 
-        //actually just do it with SerializeField
+            //disable mortar canvas via FindWithTag("ControlPanel"); 
+            //actually just do it with SerializeField
 
-        //enable inactive loss screen via SerializeField (pass in da reason)
-        Debug.Log("LOSE: " + reason);
+            //enable inactive loss screen via SerializeField (pass in da reason)
+            Debug.Log("LOSE: " + reason);
+            lost = true;
+        }
+        
     }
 }
