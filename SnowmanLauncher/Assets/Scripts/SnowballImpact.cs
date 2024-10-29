@@ -6,11 +6,14 @@ public class SnowballImpact : MonoBehaviour
 {
     private SpriteRenderer sprite;
     private Coroutine stuff;
+    private GameControllerScript controller;
+
     // Start is called before the first frame update
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
         stuff = StartCoroutine(DespawnSnowball());
+        controller = GameObject.FindWithTag("GameController").GetComponent<GameControllerScript>();
     }
 
     // Update is called once per frame
@@ -53,11 +56,13 @@ public class SnowballImpact : MonoBehaviour
         
         if(other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("hit YOURSELF");
+            controller.LoseGame("YOU HIT YOURSELF");
+            //Debug.Log("hit YOURSELF");
         }
         if(other.gameObject.CompareTag("Collectible"))
         {
-            Debug.Log("hit FRIEND");
+            controller.LoseGame("YOU HIT YOUR FRIEND");
+            //Debug.Log("hit FRIEND");
         }
     }
 }

@@ -5,6 +5,10 @@ using UnityEngine;
 public class GameControllerScript : MonoBehaviour
 {
     private GameObject controlPanelCanvas;
+    //these probably need to be serialized in case I can't refer to them when deactivated
+    //TODO: search it up
+    //Or if I can't, I can leave them enabled, refer to them in start, then disable them
+    // :)
     [SerializeField] GameObject loseCanvas;
     [SerializeField] GameObject winCanvas;
 
@@ -25,6 +29,7 @@ public class GameControllerScript : MonoBehaviour
     public void CheckWinConditions()
     {
         //if GetObjectByTag("Enemy") and GetObjectByTag("Collectible") = null:
+        //delete all bullets
         //you win
     }
 
@@ -37,5 +42,6 @@ public class GameControllerScript : MonoBehaviour
         //actually just do it with SerializeField
 
         //enable inactive loss screen via SerializeField (pass in da reason)
+        Debug.Log("LOSE: " + reason);
     }
 }
