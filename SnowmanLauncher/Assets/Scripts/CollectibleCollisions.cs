@@ -52,7 +52,7 @@ public class CollectibleCollisions : MonoBehaviour
         //fade it out in a while loop
         //Fade-out reference: https://www.youtube.com/watch?v=RNccTrsgO9g
         float time = 0;
-        float duration = 0.6f;
+        float duration = 0.4f;
 
         //Color opaque = new Color();
 

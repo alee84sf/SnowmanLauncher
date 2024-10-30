@@ -64,5 +64,9 @@ public class SnowballImpact : MonoBehaviour
             controller.LoseGame("YOU HIT YOUR FRIEND");
             //Debug.Log("hit FRIEND");
         }
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("hit enemy " + other.gameObject.name);
+        }
     }
 }
