@@ -29,12 +29,15 @@ public class GameControllerScript : MonoBehaviour
         controlPanelCanvas = GameObject.FindGameObjectWithTag("ControlPanel");
 
         //Spawning in friendlies/enemies
+        //For some reason they spawn at the wrong z so I have to put them there myself
         GameObject[] fSpawns = GameObject.FindGameObjectsWithTag("FriendlySpawn");
         List<GameObject> list = new List<GameObject>(fSpawns);
         while (friendlyCount > 0)
         {
             int i = Random.Range(0, list.Count);
-            Instantiate(friendly, list[i].transform.position, list[i].transform.rotation);
+            Vector3 v = list[i].transform.position;
+            v.z = 0;
+            Instantiate(friendly, v, list[i].transform.rotation);
             list.RemoveAt(i);
             friendlyCount--;
         }
@@ -43,7 +46,9 @@ public class GameControllerScript : MonoBehaviour
         while (enemyCount > 0)
         {
             int i = Random.Range(0, list.Count);
-            Instantiate(enemy, list[i].transform.position, list[i].transform.rotation);
+            Vector3 v = list[i].transform.position;
+            v.z = 0;
+            Instantiate(enemy, v, list[i].transform.rotation);
             list.RemoveAt(i);
             enemyCount--;
         }
