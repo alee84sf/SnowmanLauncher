@@ -35,6 +35,7 @@ public class SprinklerScript : MonoBehaviour
                 //Vector3 v = child.position;
 
                 SpawnBullet(Direction.up);
+                SpawnBullet(Direction.down);
             }
             yield return new WaitForSeconds(0.2f);
         }
