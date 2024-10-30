@@ -66,6 +66,20 @@ public class SprinklerScript : MonoBehaviour
         rb.velocity = v * moveSpeed;
     }
 
+    //snowballImpact calling this to blow it up
+    public void Explode()
+    {
+        //copied from collectible
+        this.gameObject.tag = "PickedUpAlready";
+
+        //fade/pop out if I add that
+        //here
+
+        GameObject.FindWithTag("GameController").GetComponent<GameControllerScript>().CheckWinConditions();
+
+        Destroy(gameObject);
+    }
+
 
     /*
      *  If the sprinklers bug out when exporting to OpenGL,
@@ -80,11 +94,11 @@ public class SprinklerScript : MonoBehaviour
     private void OnBecameVisible()
     {
         visible = true;
-        Debug.Log(gameObject.name + " is visible!");
+        //Debug.Log(gameObject.name + " is visible!");
     }
     private void OnBecameInvisible()
     {
         visible = false;
-        Debug.Log(gameObject.name + " is invisible!");
+        //Debug.Log(gameObject.name + " is invisible!");
     }
 }

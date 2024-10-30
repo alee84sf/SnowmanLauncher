@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameControllerScript : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameControllerScript : MonoBehaviour
     [SerializeField] GameObject winCanvas;
 
     bool lost = false;
+    public string lossReason = "unknown reason";
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +59,7 @@ public class GameControllerScript : MonoBehaviour
         //Final version: if(friends.Length == 0 && enemies.Length == 0)
         //PROBLEM: friends/enemies include themselves in the check
         //Might need to make this an IENumerator?
+        /*
         if (friends.Length == 0)
         {
             Debug.Log("No friends left");
@@ -72,6 +75,14 @@ public class GameControllerScript : MonoBehaviour
         {
             Debug.Log("enemies left");
         }
+        */
+
+        if (friends.Length == 0 && enemies.Length == 0)
+        {
+            Debug.Log("You win!");
+            lost = true;
+            winCanvas.SetActive(true);
+        }
 
     }
 
@@ -80,14 +91,22 @@ public class GameControllerScript : MonoBehaviour
     {
         if(!lost)
         {
+            lossReason = reason;
             //(might need to do if(!won) in case u launch a snowball that hits AFTER winning but idk if it matters)
 
             //disable mortar canvas via FindWithTag("ControlPanel"); 
             //actually just do it with SerializeField
 
             //enable inactive loss screen via SerializeField (pass in da reason)
+            //*instead of passing in the reason, have the loss screen get the reason
+            //from this script
             Debug.Log("LOSE: " + reason);
             lost = true;
+
+            //enable loss screen
+            loseCanvas.SetActive(true);
+
+
         }
         
     }

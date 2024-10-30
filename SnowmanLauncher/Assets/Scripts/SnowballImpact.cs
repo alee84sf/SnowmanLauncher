@@ -67,6 +67,11 @@ public class SnowballImpact : MonoBehaviour
         if(other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("hit enemy " + other.gameObject.name);
+            SprinklerScript s = other.gameObject.GetComponent<SprinklerScript>();
+            if(s != null)
+            {
+                s.Explode();
+            }
         }
     }
 }
