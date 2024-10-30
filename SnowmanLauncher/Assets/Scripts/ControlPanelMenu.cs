@@ -141,7 +141,7 @@ public class ControlPanelMenu : MonoBehaviour
 
     private IEnumerator SnowballCountdown(Vector3 launchCoords)
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3.8f);
         Instantiate(snowball, launchCoords, Quaternion.identity);
     }
 
