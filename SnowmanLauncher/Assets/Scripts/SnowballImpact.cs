@@ -61,7 +61,7 @@ public class SnowballImpact : MonoBehaviour
         }
         if(other.gameObject.CompareTag("Collectible"))
         {
-            controller.LoseGame("YOU HIT YOUR FRIEND");
+            controller.LoseGame("YOU HIT A SNOWMAN");
             //Debug.Log("hit FRIEND");
         }
         if(other.gameObject.CompareTag("Enemy"))
