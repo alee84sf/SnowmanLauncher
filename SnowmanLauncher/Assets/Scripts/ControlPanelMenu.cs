@@ -55,19 +55,8 @@ public class ControlPanelMenu : MonoBehaviour
     }
 
     /*
-     * I probably need to keep track of the menu timers here
-     * i.e. the fire button cooldown
-     * On fire button press: fireable=false, change LED, start cooldown
-     * 
-     * when cooldown is done:
-     * fireable=true
-     * 
-     * pressing fire button checks fireable in ControlPanelMenu, ControlPanel never gets disabled so it will always know (get by tag ControlPanel)
-     * 
      * will worry about a READY TO FIRE button later
      * (if active, update state, also update state on open)
-     *      
-     * 
      */
 
     // Update is called once per frame

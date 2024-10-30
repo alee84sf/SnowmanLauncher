@@ -37,7 +37,7 @@ public class SprinklerBullet : MonoBehaviour
         //Debug.Log("Just hit " + collision.gameObject);
         if(collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Hit the player");
+            //Debug.Log("Hit the player");
             GameObject.FindWithTag("GameController").GetComponent<GameControllerScript>().LoseGame("Melted by sprinkler");
         }
     }

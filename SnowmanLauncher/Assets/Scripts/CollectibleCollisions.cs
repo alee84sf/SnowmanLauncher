@@ -36,10 +36,10 @@ public class CollectibleCollisions : MonoBehaviour
             //win logic here
             GameObject.FindWithTag("GameController").GetComponent<GameControllerScript>().CheckWinConditions();
         }
-        else
+        /*else
         {
             Debug.Log("I, " + gameObject.name + ", touched " + collision.gameObject.name);
-        }
+        }*/
     }
 
     //I COPIED THIS DIRECTLY FROM THE SNOWBALL SCRIPT

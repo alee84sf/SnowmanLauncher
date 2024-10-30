@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameControllerScript : MonoBehaviour
@@ -16,17 +17,52 @@ public class GameControllerScript : MonoBehaviour
     bool lost = false;
     public string lossReason = "unknown reason";
 
+    //npc spawning
+    [SerializeField] int friendlyCount;
+    [SerializeField] int enemyCount;
+    [SerializeField] GameObject friendly;
+    [SerializeField] GameObject enemy;
+
     // Start is called before the first frame update
     void Start()
     {
         controlPanelCanvas = GameObject.FindGameObjectWithTag("ControlPanel");
+
+        //Spawning in friendlies/enemies
+        GameObject[] fSpawns = GameObject.FindGameObjectsWithTag("FriendlySpawn");
+        List<GameObject> list = new List<GameObject>(fSpawns);
+        while (friendlyCount > 0)
+        {
+            int i = Random.Range(0, list.Count);
+            Instantiate(friendly, list[i].transform.position, list[i].transform.rotation);
+            list.RemoveAt(i);
+            friendlyCount--;
+        }
+        GameObject[] eSpawns = GameObject.FindGameObjectsWithTag("EnemySpawn");
+        list = new List<GameObject>(eSpawns);
+        while (enemyCount > 0)
+        {
+            int i = Random.Range(0, list.Count);
+            Instantiate(enemy, list[i].transform.position, list[i].transform.rotation);
+            list.RemoveAt(i);
+            enemyCount--;
+        }
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //reload scene
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        //main menu
+        if (Input.GetKeyDown(KeyCode.BackQuote))
+        {
+            Debug.Log("main menu");
+        }
     }
 
     //vvv Triggers when the player kills enemy and/or saves friend
