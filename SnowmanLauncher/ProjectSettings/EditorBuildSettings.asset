@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: ccd329b4c337df34aa8a55c89ce94d37
   - enabled: 1
-    path: Assets/Scenes/Tutorial1.unity
+    path: Assets/Scenes/LevelSelect.unity
     guid: 596020d98af075647bc0d327ae8b379c
+  - enabled: 1
+    path: Assets/Scenes/Tutorial1.unity
+    guid: 9e9e418591f4a754db0599078faa5aac
   - enabled: 1
     path: Assets/Scenes/Tutorial2.unity
     guid: 9049e489976e90d46b07bdabf7999377
@@ -23,4 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lakeside.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Canyon.unity
+    guid: 37d76782c936e8148931f011e5e6d8f6
+  - enabled: 1
+    path: Assets/Scenes/Glacier.unity
+    guid: 44104717bbb0ecf46b144867032c717f
+  - enabled: 1
+    path: Assets/Scenes/Gridless.unity
+    guid: 2305eb229247a1d41b63529e3c6a52d5
   m_configObjects: {}
