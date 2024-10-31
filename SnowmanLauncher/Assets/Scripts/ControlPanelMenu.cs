@@ -31,6 +31,11 @@ public class ControlPanelMenu : MonoBehaviour
     Coroutine fireSnowball;
     Coroutine fireCooldown;
 
+    private AudioSource audioSource;
+    [SerializeField] AudioClip buttonPress;
+    [SerializeField] AudioClip launchSound;
+    [SerializeField] AudioClip impactSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,8 +56,9 @@ public class ControlPanelMenu : MonoBehaviour
 
         //lowerLeftCoords += new Vector3(measurementUnit, 0, 0);
         //Instantiate(snowball, lowerLeftCoords, Quaternion.identity);
-        
-        
+
+        //Reference: https://www.youtube.com/watch?v=DU7cgVsU2rM
+        audioSource = GetComponent<AudioSource>();
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerMovement>();
@@ -82,6 +88,13 @@ public class ControlPanelMenu : MonoBehaviour
         } 
     }
 
+    void PlaySound(AudioClip sound)
+    {
+        //audioSource.clip = sound;
+        //audioSource.Play();
+        AudioSource.PlayClipAtPoint(sound,(GameObject.FindWithTag("MainCamera")).transform.position,0.85f);
+    }
+
     void OpenPanel()
     {
         controlPanelUI.SetActive(true);
@@ -108,7 +121,8 @@ public class ControlPanelMenu : MonoBehaviour
             //UPDATE NUMBER SPRITE
             numberDisplay.GetComponent<UnityEngine.UI.Image>().sprite = numberDisplaySprites[n - 1];
         }
-        //update display based on what was set above
+        //PLAY SOUND HERE
+        PlaySound(buttonPress);
     }
 
     public void FireSnowball()
@@ -127,9 +141,11 @@ public class ControlPanelMenu : MonoBehaviour
             fireSnowball = StartCoroutine(SnowballCountdown(launchCoords));
 
             fireCooldown = StartCoroutine(FireCooldown());
+            PlaySound(launchSound);
         } else
         {
             Debug.Log("Fire button cooldown");
+            PlaySound(buttonPress);
         }
     }
 
@@ -137,6 +153,8 @@ public class ControlPanelMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(3.8f);
         Instantiate(snowball, launchCoords, Quaternion.identity);
+        //PLAY SOUND HERE
+        PlaySound(impactSound);
     }
 
     private IEnumerator FireCooldown()
