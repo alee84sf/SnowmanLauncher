@@ -66,7 +66,8 @@ public class GameControllerScript : MonoBehaviour
         //main menu
         if (Input.GetKeyDown(KeyCode.BackQuote))
         {
-            Debug.Log("main menu");
+            //Debug.Log("main menu");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 
