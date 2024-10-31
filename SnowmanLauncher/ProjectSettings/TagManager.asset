@@ -17,6 +17,7 @@ TagManager:
   - LossReason
   - FriendlySpawn
   - EnemySpawn
+  - Indicator
   layers:
   - Default
   - TransparentFX

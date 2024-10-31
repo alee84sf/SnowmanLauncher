@@ -10,6 +10,10 @@ public class ControlPanelMenu : MonoBehaviour
     public GameObject player;
     private PlayerMovement playerScript;
 
+    [SerializeField] GameObject indicator;
+    [SerializeField] Sprite RTFOff;
+    [SerializeField] Sprite RTFOn;
+
     //Snowball positioning
     public int xCoords; //A-F will send 1-6 as well
     public int yCoords; //Reminder: SUBTRACT 1 FROM BOTH X AND Y
@@ -82,6 +86,7 @@ public class ControlPanelMenu : MonoBehaviour
     {
         controlPanelUI.SetActive(true);
         controlPanelOpen = true;
+        UpdateRTF(fireEnabled);
     }
     void ClosePanel()
     {
@@ -136,10 +141,28 @@ public class ControlPanelMenu : MonoBehaviour
 
     private IEnumerator FireCooldown()
     {
+        UpdateRTF(false);
         //Debug.Log("cooling down...");
         fireEnabled = false;
         yield return new WaitForSeconds(4);
         fireEnabled = true;
         Debug.Log("ready to go!");
+        UpdateRTF(true);
+    }
+
+    private void UpdateRTF(bool on)
+    {
+        if (controlPanelOpen)
+        {
+            Sprite s;
+            if (on)
+            {
+                s = RTFOn;
+            } else
+            {
+                s = RTFOff;
+            }
+            indicator.GetComponent<UnityEngine.UI.Image>().sprite = s;
+        }
     }
 }
